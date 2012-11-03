@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Semaphore::VERSION
   gem.authors       = ["Rozhnov Alexandr"]
   gem.email         = ["nox73@ya.ru"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{Semaphore implementation in Ruby}
+  gem.description   = %q{Simple Semaphore implementation in Ruby}
+  gem.summary       = %q{Semaphore Ruby}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
