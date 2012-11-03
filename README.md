@@ -1,4 +1,4 @@
-# Semaphore
+# Semaphore [![Build Status](https://secure.travis-ci.org/NOX73/semaphore.png)](http://travis-ci.org/NOX73/semaphore)
 
 Semaphore implementation for ruby
 
