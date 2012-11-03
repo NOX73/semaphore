@@ -18,33 +18,58 @@ class SemaphoreTest < MiniTest::Unit::TestCase
     assert var
   end
 
-  def test_check_two_threads_write
+  def test_two_threads
     var = []
+    threads = []
     semaphore = Semaphore.new 1
 
-    a = Thread.new{
-      semaphore.synchronize {
-        sleep 1
-        100.times{ var << 1 }
-        sleep 100
-      }
-    }
+    threads << Thread.new{ semaphore.synchronize {
+      100.times{ var << 1 }
+      sleep 100
+    }}
 
     sleep 1
 
-    b = Thread.new{
-      semaphore.synchronize {
-        100.times{ var << 2 }
-      }
-    }
+    threads << Thread.new{ semaphore.synchronize {
+      100.times{ var << 2 }
+    }}
 
     sleep 1
 
-    a.kill
-    b.kill
+    threads.map(&:kill)
 
     assert_equal 100, var.inject(:+)
+  end
 
+  def test_multi_threads
+    var = { a: [], b: [], c: [], }
+    threads = []
+
+    semaphore = Semaphore.new 2
+
+    threads << Thread.new{ semaphore.synchronize {
+      100.times{ var[:a] << 1 }
+      sleep 100
+    }}
+
+    threads << Thread.new{ semaphore.synchronize {
+      100.times{ var[:b] << 2 }
+      sleep 100
+    }}
+
+    sleep 1
+
+    threads << Thread.new{ semaphore.synchronize {
+      100.times{ var[:c] << 3 }
+    }}
+
+    sleep 1
+
+    threads.map(&:kill)
+
+    sum = (var[:a] + var[:b] + var[:c]).inject(:+)
+
+    assert_equal 300, sum
   end
 
 end
