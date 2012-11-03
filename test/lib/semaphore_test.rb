@@ -72,4 +72,34 @@ class SemaphoreTest < MiniTest::Unit::TestCase
     assert_equal 300, sum
   end
 
+
+  def test_consistent_threads
+    var = []
+    threads = []
+    semaphore = Semaphore.new 1
+
+    threads << Thread.new{ semaphore.synchronize {
+      10.times{ var << 1 }
+    }}
+
+    threads << Thread.new{ semaphore.synchronize {
+      10.times{ var << 2 }
+    }}
+
+    threads << Thread.new{ semaphore.synchronize {
+      10.times{ var << 3 }
+    }}
+
+    threads << Thread.new{ semaphore.synchronize {
+      10.times{ var << 4 }
+    }}
+
+    sleep 1
+
+    threads.map(&:kill)
+
+    assert_equal 100, var.inject(:+)
+  end
+
+
 end
