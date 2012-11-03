@@ -6,4 +6,11 @@ class SemaphoreTest < MiniTest::Unit::TestCase
     Semaphore.new 3
   end
 
+  def test_should_synchronize_method
+    semaphore = Semaphore.new 3
+    semaphore.synchronize {
+
+    }
+  end
+
 end
