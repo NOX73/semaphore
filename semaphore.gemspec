@@ -9,11 +9,15 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Rozhnov Alexandr"]
   gem.email         = ["nox73@ya.ru"]
   gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.summary       = %q{Semaphore implementation in Ruby}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_development_dependency('rake')
+  gem.add_development_dependency('minitest')
+  gem.add_development_dependency('turn')
 end

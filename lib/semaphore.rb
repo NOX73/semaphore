@@ -1,5 +1,9 @@
 require "semaphore/version"
 
 module Semaphore
-  # Your code goes here...
+
+  def self.new( limit )
+
+  end
+
 end
