@@ -1,3 +1,4 @@
+# travis CI
 language: ruby
 script: "turn -Itest test/lib"
 rvm:
