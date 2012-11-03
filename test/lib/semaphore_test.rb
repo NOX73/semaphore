@@ -42,7 +42,7 @@ class SemaphoreTest < MiniTest::Unit::TestCase
   end
 
   def test_multi_threads
-    var = { a: [], b: [], c: [], }
+    var = { :a => [], :b => [], :c => [], }
     threads = []
 
     semaphore = Semaphore.new 2
