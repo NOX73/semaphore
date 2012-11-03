@@ -1,6 +1,6 @@
 # Semaphore
 
-TODO: Write a gem description
+Semaphore implementation for ruby
 
 ## Installation
 
@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+semaphore = Semaphore.new 2
+
+semaphore.synchronize {
+    # your code
+}
+```
 
 ## Contributing
 
